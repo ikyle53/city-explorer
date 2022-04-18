@@ -1,25 +1,40 @@
 # City-Explorer
 
 **Author**: Kyle Honaker
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.1
 
 ## Overview
+
 This application is used to explore cities! The user enters the name of a city and the UI presents him/her with a map and a little bit of details.
 
 ## Getting Started
+
+Prerequisites:
+
+```
+$ node --version
+v16.14.0
+
+$ npm --version
+8.3.1
+```
 Installation: 
-1. Make sure you have node.js installed and you're using verison 16. 
-2. 
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+1. Clone the repository to your machine  
+`$ git clone {URL of this repository}  
+2. cd into the new folder you just cloned and run npm install  
+`$ npm install`  
+3. Run the project  
+`$ npm start`
 
 ## Architecture
-
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+- The app uses React,Javascript, and CSS as its primary languages. 
+- It pulls location data from the [LocationsIQ](https://locationiq.com/) API.
+- [Axios](https://www.npmjs.com/package/axios#axios-api) is also used for requests.
+- [Netlify](https://www.netlify.com/) for deployment.
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+1.0.1: 04-18-2021 3:00pm - Setup of the application and deployment test complete.
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Abdulahi Mohamud - Data flow chart ![Dataflow Chart](/src/images/dataflow.png)
