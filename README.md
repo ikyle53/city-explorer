@@ -23,3 +23,13 @@ Installation:
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+Lab 06
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 2:30PM
+
+Finish time: 6:45PM
+
+Actual time needed to complete: 4 hours 15 minutes
