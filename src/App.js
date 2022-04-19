@@ -22,19 +22,26 @@ class App extends React.Component {
   //Submit handler. Submits the request for latitude, longitude, and city name.
   handleExploreSubmit = async (event) => {
     event.preventDefault();
-    let mapUrl;
-    let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.city}&format=json`;
-    let cityData = await axios.get(url);
-    this.setState({
-      cityData: cityData.data[0],
-      lon: cityData.data[0].lon,
-      lat: cityData.data[0].lat
-    }, () => {
-      mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=14`;
+    try {
+      let mapUrl;
+      let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.city}&format=json`;
+      let cityData = await axios.get(url);
       this.setState({
-        mapState: mapUrl
+        cityData: cityData.data[0],
+        lon: cityData.data[0].lon,
+        lat: cityData.data[0].lat
+      }, () => {
+        mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=14`;
+        this.setState({
+          mapState: mapUrl
+        })
       })
-    })
+    } catch(error) {
+      this.setState({
+        error: true,
+        errorMsg: `Whoa, an error. You got an error ${error.response.status}`
+      })
+    }
   }
 
   //Input handler. Gives us the data from the input.
@@ -62,17 +69,18 @@ class App extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <Card.Img variant='top' src={this.state.mapState} alt='Map' style={{width: '100%'}}/>
+            <Card.Img variant='top' src={this.state.mapState} alt='Map' style={{ width: '100%' }} />
             <Card.Title>{this.state.city}</Card.Title>
             <Card.Text>Latitude: {this.state.lat}</Card.Text>
             <Card.Text>Longitude: {this.state.lon}</Card.Text>
           </Card.Body>
         </Card>
-       
-        {//map
+
+        {
+          this.state.error ? <p style={{textAlign: 'center'}}>{this.state.errorMsg}</p> : <p style={{textAlign: 'center'}}>All is well.</p>
         }
-        
-         {//Form to collect city data and submit request
+
+        {//Form to collect city data and submit request
         }
         <form onSubmit={this.handleExploreSubmit}>
           <label>
