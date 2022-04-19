@@ -14,22 +14,27 @@ class App extends React.Component {
       error: false,
       errorMsg: '',
       lon: '',
-      lat: ''
+      lat: '',
+      mapState: ''
     }
   }
 
   //Submit handler. Submits the request for latitude, longitude, and city name.
   handleExploreSubmit = async (event) => {
     event.preventDefault();
+    let mapUrl;
     let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.city}&format=json`;
     let cityData = await axios.get(url);
-    console.log(cityData.data[0]);
     this.setState({
       cityData: cityData.data[0],
       lon: cityData.data[0].lon,
       lat: cityData.data[0].lat
+    }, () => {
+      mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=14`;
+      this.setState({
+        mapState: mapUrl
+      })
     })
-    console.log(this.state)
   }
 
   //Input handler. Gives us the data from the input.
@@ -45,9 +50,8 @@ class App extends React.Component {
         {//Card that is rendered to the UI showing the city, lat, and long
         }
         <Card style={{
-          width: '17rem',
-          height: '17rem',
-          borderRadius: '50%',
+          width: '24rem',
+          height: '30rem',
           textAlign: 'center',
           backgroundColor: 'orange',
           margin: '30px auto',
@@ -58,12 +62,17 @@ class App extends React.Component {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
+            <Card.Img variant='top' src={this.state.mapState} alt='Map' style={{width: '100%'}}/>
             <Card.Title>{this.state.city}</Card.Title>
             <Card.Text>Latitude: {this.state.lat}</Card.Text>
             <Card.Text>Longitude: {this.state.lon}</Card.Text>
           </Card.Body>
         </Card>
-        {//Form to collect city data and submit request
+       
+        {//map
+        }
+        
+         {//Form to collect city data and submit request
         }
         <form onSubmit={this.handleExploreSubmit}>
           <label>
