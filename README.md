@@ -52,3 +52,13 @@ Abdulahi Mohamud - Data flow chart ![Dataflow Chart](/src/images/dataflow.png)
 
 Liesl White - Web Request Response Cycle 
 
+Lab 07
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 5:07PM
+
+Finish time: 9:07PM
+
+Actual time needed to complete: 4 hours
+
