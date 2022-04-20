@@ -50,3 +50,5 @@ Actual time needed to complete: 4 hours 15 minutes
 
 Abdulahi Mohamud - Data flow chart ![Dataflow Chart](/src/images/dataflow.png)
 
+Liesl White - Web Request Response Cycle 
+

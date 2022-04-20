@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
+import Weather from './components/Weather.js';
 
 class App extends React.Component {
 
@@ -15,7 +16,8 @@ class App extends React.Component {
       errorMsg: '',
       lon: '',
       lat: '',
-      mapState: ''
+      mapState: '',
+      showWeather: false
     }
   }
 
@@ -42,6 +44,7 @@ class App extends React.Component {
         errorMsg: `Whoa, an error. You got an error ${error.response.status}`
       })
     }
+    console.log(this.state.city);
   }
 
   //Input handler. Gives us the data from the input.
