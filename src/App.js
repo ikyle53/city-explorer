@@ -17,7 +17,9 @@ class App extends React.Component {
       lon: '',
       lat: '',
       mapState: '',
-      showWeather: false
+      showWeather: false,
+      weatherData: ''
+
     }
   }
 
@@ -36,15 +38,22 @@ class App extends React.Component {
         mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=14`;
         this.setState({
           mapState: mapUrl
+        }, () => {
+          let weatherUrl = `${process.env.REACT_APP_SERVER}/weather&city=${this.state.city}&lat=${this.state.lat}&lon=${this.state.lon}`;
+          let weatherData = axios.get(weatherUrl);
+          console.log(weatherUrl);
+          this.setState({
+            weatherData: weatherData.data
+          })
         })
       })
-    } catch(error) {
+    } catch (error) {
       this.setState({
         error: true,
         errorMsg: `Whoa, an error. You got an error ${error.response.status}`
       })
     }
-    console.log(this.state.city);
+    console.log('Request sent to server');
   }
 
   //Input handler. Gives us the data from the input.
@@ -80,7 +89,7 @@ class App extends React.Component {
         </Card>
 
         {
-          this.state.error ? <p style={{textAlign: 'center'}}>{this.state.errorMsg}</p> : <p style={{textAlign: 'center'}}>All is well.</p>
+          this.state.error ? <p style={{ textAlign: 'center' }}>{this.state.errorMsg}</p> : <p style={{ textAlign: 'center' }}>All is well.</p>
         }
 
         {//Form to collect city data and submit request
@@ -93,9 +102,9 @@ class App extends React.Component {
           <button type='submit'>Explore!</button>
         </form>
 
-        <Weather />
+        <Weather weatherData={this.state.weatherData}/>
       </>
-      
+
     );
   }
 }

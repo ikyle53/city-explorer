@@ -4,13 +4,15 @@ class Weather extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            someWeather: ''
+            
         }
     }
 
     render() {
         return(
             <>
+            <p>{this.props.weatherData}</p>
+            
             </>
         )
     }
