@@ -92,7 +92,10 @@ class App extends React.Component {
           </label>
           <button type='submit'>Explore!</button>
         </form>
+
+        <Weather />
       </>
+      
     );
   }
 }
