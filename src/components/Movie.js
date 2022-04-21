@@ -1,6 +1,7 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
 
-class Weather extends React.Component {
+class Movie extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,17 +12,15 @@ class Weather extends React.Component {
     render() {
         return (
             <>
-            <h2>Weather 3day forecast</h2>
-                {this.props.weatherData.map((item, idx) => (
+            <h2>Movies connected to the city you searched</h2>
+                {this.props.movieData.map((item, idx) => (
                     <div key={idx}>
-                        <p>{item.date}</p>
-                        <p>{item.description}</p>
+                        <ul>{item.name}</ul>
                     </div>
                 ))}
-
             </>
         )
     }
 }
 
-export default Weather;
+export default Movie;
