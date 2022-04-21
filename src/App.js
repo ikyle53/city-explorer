@@ -21,8 +21,6 @@ class App extends React.Component {
       showWeather: false,
       weatherData: [],
       movieData: [],
-      movieUrl: '',
-      movieDesc: ''
     }
   }
 
