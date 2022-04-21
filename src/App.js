@@ -20,7 +20,9 @@ class App extends React.Component {
       mapState: '',
       showWeather: false,
       weatherData: [],
-      movieData: []
+      movieData: [],
+      movieUrl: '',
+      movieDesc: ''
     }
   }
 
@@ -70,7 +72,6 @@ class App extends React.Component {
     }
     console.log('Request sent to server');
   }
-
 
   //Input handler. Gives us the data from the input. **********************************************
   handleExploreInput = (event) => {
