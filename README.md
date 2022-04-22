@@ -34,6 +34,9 @@ Installation:
 
 ## Change Log
 1.0.1: 04-18-2021 3:00pm - Setup of the application and deployment test complete.
+1.1.0: 04-19-2021 8:00pm - Set up back end server and linked to front end.
+1.2.0: 04-20-2021 5:00pm - UI in place. API are being contacted for data.
+1.3.0: 04-21-2021 5:43pm - Site is fully functional with API being fed to the UI.
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
