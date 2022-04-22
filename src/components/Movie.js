@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
 
 class Movie extends React.Component {
     constructor(props) {
@@ -11,11 +12,15 @@ class Movie extends React.Component {
     render() {
         return (
             <>
-            <h2>Movies connected to the city you searched</h2>
+
                 {this.props.movieData.map((item, idx) => (
-                    <div key={idx}>
-                        <ul>{item.name}</ul>
-                    </div>
+                    <Card key={idx}>
+                        <Card.Body>
+                        <Card.Title><h5>{item.name}</h5></Card.Title>
+                        <Card.Img variant="top" src={item.image} alt={item.overview} style={{width: '50%'}}/>    
+                            <Card.Text>{item.overview}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 ))}
             </>
         )
