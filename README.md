@@ -73,3 +73,15 @@ Finish time: 8:05PM
 Actual time needed to complete: 6 hours 10 minutes
 
 Chad Moore - Web request response cycle ![Dataflow Chart 08](/src/images/Lab08.png)
+
+Lab 09
+
+Estimate of time needed to complete: 4
+
+Start time: 2:30PM
+
+Finish time: 5:35PM
+
+Actual time needed to complete: 3 hours 5 minutes
+
+Darius Owens - [Dataflow Chart 09](/src/images/lab09.png)
