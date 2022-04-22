@@ -20,7 +20,7 @@ class App extends React.Component {
       mapState: '',
       showWeather: false,
       weatherData: [],
-      movieData: [],
+      movieData: []
     }
   }
 
@@ -58,7 +58,10 @@ class App extends React.Component {
       let movieEndpoint = `${process.env.REACT_APP_SERVER}/movie?city=${this.state.city}`;
       let movieRequest = await axios.get(movieEndpoint);
       this.setState({
-        movieData: movieRequest.data
+        movieData: movieRequest.data,
+        movieUrl: movieRequest.data[0].poster_path,
+        movieDesc: movieRequest.data[0].overview,
+        movieVote: movieRequest.data[0].vote_average
       })
 
       //End of try ******************************************************************************
@@ -146,6 +149,7 @@ class App extends React.Component {
           overflow: 'auto',
           backgroundColor: 'orange'
         }}>
+          <Card.Title>Movies with city in it</Card.Title>
         <Movie movieData={this.state.movieData} />
         </Card>
       </div>
