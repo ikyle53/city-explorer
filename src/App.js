@@ -75,7 +75,9 @@ class App extends React.Component {
       let weatherRequest = await axios.get(weatherEndpoint, {params: {city: this.state.city, lat: this.state.lat, lon: this.state.lon}});
       //Set state of the weather request data object ********************************************
       this.setState({
-        weatherData: weatherRequest.data
+        weatherData: weatherRequest.data,
+        lon: weatherRequest.data.lon,
+        lat: weatherRequest.data.lat
       })
   }
 
