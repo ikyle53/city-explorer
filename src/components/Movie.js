@@ -12,7 +12,6 @@ class Movie extends React.Component {
     render() {
         return (
             <>
-
                 {this.props.movieData.map((item, idx) => (
                     <Card key={idx}>
                         <Card.Body>

@@ -88,3 +88,15 @@ Finish time: 5:35PM
 Actual time needed to complete: 3 hours 5 minutes
 
 Darius Owens - [Dataflow Chart 09](/src/images/lab09.png)
+
+Lab 10
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 3:10PM
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Darius Owens - [Dataflow Chart 10](/src/images/lab10.png)

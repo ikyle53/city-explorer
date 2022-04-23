@@ -15,8 +15,8 @@ class App extends React.Component {
       cityData: {},
       error: false,
       errorMsg: '',
-      lon: '',
-      lat: '',
+      lon: 0,
+      lat: 0,
       mapState: '',
       showWeather: false,
       weatherData: [],
@@ -33,35 +33,20 @@ class App extends React.Component {
       let url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_API_KEY}&q=${this.state.city}&format=json`;
       let cityData = await axios.get(url);
       let mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_API_KEY}&center=${cityData.data[0].lat},${cityData.data[0].lon}&zoom=15`
-      console.log(mapUrl);
+      
       //Set state of longitude and latitude ****************************************************
+      let parsedLon = parseInt(cityData.data[0].lon);
+      let parsedLat = parseInt(cityData.data[0].lat);
+
       this.setState({
         cityData: cityData.data[0],
-        lon: cityData.data[0].lon,
-        lat: cityData.data[0].lat,
+        lon: parsedLon,
+        lat: parsedLat
       })
 
       //Set state of the URL for request to location IQ *****************************************
       this.setState({
         mapState: mapUrl,
-      })
-
-      //Variables for requesting weather data from server
-      let weatherEndpoint = `${process.env.REACT_APP_SERVER}/weather?city=${this.state.city}`;
-      let weatherRequest = await axios.get(weatherEndpoint);
-      //Set state of the weather request data object ********************************************
-      this.setState({
-        weatherData: weatherRequest.data
-      })
-
-      //Movie ***********************************************************************************
-      let movieEndpoint = `${process.env.REACT_APP_SERVER}/movie?city=${this.state.city}`;
-      let movieRequest = await axios.get(movieEndpoint);
-      this.setState({
-        movieData: movieRequest.data,
-        movieUrl: movieRequest.data[0].poster_path,
-        movieDesc: movieRequest.data[0].overview,
-        movieVote: movieRequest.data[0].vote_average
       })
 
       //End of try ******************************************************************************
@@ -72,6 +57,8 @@ class App extends React.Component {
       })
     }
     console.log('Request sent to server');
+    this.handleWeather();
+    this.handleMovie();
   }
 
   //Input handler. Gives us the data from the input. **********************************************
@@ -79,6 +66,26 @@ class App extends React.Component {
     this.setState({
       city: event.target.value
     })
+  }
+
+  handleWeather = async() => {
+    //?city=${this.state.city}&lat=${this.state.lat}&lon=${this.state.lon}`;
+      //Variables for requesting weather data from server
+      let weatherEndpoint = `${process.env.REACT_APP_SERVER}/weather`
+      let weatherRequest = await axios.get(weatherEndpoint, {params: {city: this.state.city, lat: this.state.lat, lon: this.state.lon}});
+      //Set state of the weather request data object ********************************************
+      this.setState({
+        weatherData: weatherRequest.data
+      })
+  }
+
+  handleMovie = async() => {
+      //Movie ***********************************************************************************
+      let movieEndpoint = `${process.env.REACT_APP_SERVER}/movie`;
+      let movieRequest = await axios.get(movieEndpoint, {params: {city: this.state.city}});
+      this.setState({
+        movieData: movieRequest.data
+      })
   }
 
   render() {

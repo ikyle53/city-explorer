@@ -14,8 +14,8 @@ class Weather extends React.Component {
             <h2>Weather 3day forecast</h2>
                 {this.props.weatherData.map((item, idx) => (
                     <div key={idx}>
-                        <h4>{item.date}</h4>
-                        <h5>{item.description}</h5>
+                        <h4>{item.time}</h4>
+                        <h5>{item.forecast}</h5>
                     </div>
                 ))}
 
